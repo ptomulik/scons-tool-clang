@@ -9,7 +9,8 @@ selection method.
 """
 
 #
-# __COPYRIGHT__
+# Copyright (c) 2014 Pawel Tomulik
+# Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013 The SCons Foundation
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -31,7 +32,7 @@ selection method.
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-__revision__ = "__FILE__ __REVISION__ __DATE__ __DEVELOPER__"
+#__revision__ = "__FILE__ __REVISION__ __DATE__ __DEVELOPER__"
 
 # Based on SCons/Tool/gcc.py
 
