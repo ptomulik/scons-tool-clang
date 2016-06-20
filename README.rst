@@ -15,7 +15,7 @@ Git-based projects
       touch README.rst
       git init
 
-#. Add the `scon-tool-clang`_ as a submodule::
+#. Add the `scons-tool-clang`_ as a submodule::
 
       git submodule add git://github.com/ptomulik/scons-tool-clang.git site_scons/site_tools/clang
 
