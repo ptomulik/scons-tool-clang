@@ -1,4 +1,5 @@
-"""SCons.Tool.clang
+# -*- coding: utf-8 -*-
+"""sconstool.clang
 
 Tool-specific initialization for clang.
 
@@ -32,16 +33,22 @@ selection method.
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-#__revision__ = "__FILE__ __REVISION__ __DATE__ __DEVELOPER__"
-
 # Based on SCons/Tool/gcc.py
 
 import os
 import re
 import subprocess
+import sys
 
 import SCons.Util
 import SCons.Tool.cc
+
+try:
+    from SCons.Tool.clangCommon import get_clang_install_dirs
+    has_clangCommon = True
+except ImportError:
+    has_clangCommon = False
+
 
 compilers = ['clang']
 
@@ -49,21 +56,31 @@ def generate(env):
     """Add Builders and construction variables for clang to an Environment."""
     SCons.Tool.cc.generate(env)
 
+    if has_clangCommon and env['PLATFORM'] == 'win32':
+        # Ensure that we have a proper path for clang
+        clang = SCons.Tool.find_program_path(env, compilers[0],
+                                             default_paths=get_clang_install_dirs(env['PLATFORM']))
+        if clang:
+            clang_bin_dir = os.path.dirname(clang)
+            env.AppendENVPath('PATH', clang_bin_dir)
+
     env['CC'] = env.Detect(compilers) or 'clang'
     if env['PLATFORM'] in ['cygwin', 'win32']:
         env['SHCCFLAGS'] = SCons.Util.CLVar('$CCFLAGS')
     else:
         env['SHCCFLAGS'] = SCons.Util.CLVar('$CCFLAGS -fPIC')
+
     # determine compiler version
     if env['CC']:
-        #pipe = SCons.Action._subproc(env, [env['CC'], '-dumpversion'],
         pipe = SCons.Action._subproc(env, [env['CC'], '--version'],
-                                     stdin = 'devnull',
-                                     stderr = 'devnull',
-                                     stdout = subprocess.PIPE)
+                                     stdin='devnull',
+                                     stderr='devnull',
+                                     stdout=subprocess.PIPE)
         if pipe.wait() != 0: return
         # clang -dumpversion is of no use
         line = pipe.stdout.readline()
+        if sys.version_info[0] > 2:
+            line = line.decode()
         match = re.search(r'clang +version +([0-9]+(?:\.[0-9]+)+)', line)
         if match:
             env['CCVERSION'] = match.group(1)

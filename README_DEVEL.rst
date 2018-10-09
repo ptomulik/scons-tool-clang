@@ -1,74 +1,45 @@
 scons-tool-clang
 ==================
 
-.. image:: https://travis-ci.org/ptomulik/scons-tool-clang.svg?branch=master
-    :target: https://travis-ci.org/ptomulik/scons-tool-clang
-    :alt: Travis CI build status
+This module is designed to be developed with the help of pipenv_.
 
-SCons_ support for LLVM_ clang_ C compiler.
+Initialization
+--------------
 
-Installation
-------------
+On a fresh clone do::
 
-There are few ways to install this tool to your project.
+   pipenv install --dev
+   pipenv run bin/downloads.py
 
-Via pipenv
-^^^^^^^^^^
-
-This should be used, if your project uses pipenv_:
-
-.. code-block:: shell
-
-      pipenv install scons-tool-clang
-
-
-The tool will be installed as a namespaced package ``sconstool.clang``
-in project's virtual environment.
-
-As a git submodule
-^^^^^^^^^^^^^^^^^^
-
-#. Create new git repository:
-
-   .. code-block:: shell
-
-      mkdir /tmp/prj && cd /tmp/prj
-      touch README.rst
-      git init
-
-#. Add the `scons-tool-clang`_ as a submodule:
-
-   .. code-block:: shell
-
-      git submodule add git://github.com/ptomulik/scons-tool-clang.git site_scons/site_tools/clang
-
-Usage example
+Running tests
 -------------
 
-#. Create simple C file
+There are some end-to-end tests. They can be ran this way::
 
-   .. code-block:: cpp
+   pipenv run ./runtest.py -e -a
 
-      // test.c
-      int main()
-      {
-        return 0;
-      }
 
-#. Create simple SConstruct file
+Creating package for distribution
+---------------------------------
 
-   .. code-block:: python
+.. code:: shell
 
-      # SConstruct
-      env = Environment(tools = ['default', 'clang'])
-      print(env.subst("using $CC $CCVERSION"))
-      env.Program('test.c')
+   pipenv run python setup.py sdist bdist_wheel
 
-#. Try it out:
 
-   .. code-block:: shell
+Uploading to test.pypi.org_
+---------------------------
 
-      scons
+.. code:: shell
+
+   pipenv run twine upload -r testpypi dist/*
+
+Uploading to pypi.org_
+-----------------------
+
+.. code:: shell
+
+   pipenv run twine upload dist/*
 
 LICENSE
 -------
@@ -98,5 +69,7 @@ SOFTWARE
 .. _clang: http://llvm.org/
 .. _SCons: http://scons.org
 .. _pipenv: https://pipenv.readthedocs.io/
+.. _test.pypi.org: https://test.pypi.org/
+.. _pypi.org: https://pypi.org/
 
 .. <!--- vim: set expandtab tabstop=2 shiftwidth=2 syntax=rst: -->
