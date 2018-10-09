@@ -12,7 +12,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
         name='scons-tool-clang',
-        version='0.2.2',
+        version='0.2.3',
         package_dir={'sconstool.clang': '.'},
         packages=['sconstool.clang'],
         namespace_packages=['sconstool'],
