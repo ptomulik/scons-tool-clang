@@ -163,7 +163,7 @@ def main():
         if pkg.lower() == 'scons-test':
             download_scons_test(**vars(_args))
         else:
-            warn("unsupported package: %r")
+            warn("unsupported package: %r" % pkg)
             return 2
     return 0
 
