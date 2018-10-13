@@ -1,5 +1,5 @@
 scons-tool-clang
-================
+==================
 
 .. image:: https://badge.fury.io/py/scons-tool-clang.svg
     :target: https://badge.fury.io/py/scons-tool-clang
@@ -16,25 +16,31 @@ Installation
 
 There are few ways to install this tool to your project.
 
-Via pipenv
+From pypi_
 ^^^^^^^^^^
-
-This should be used, if your project uses pipenv_:
 
 .. code-block:: shell
 
-      pipenv install --dev scons-tool-clang
+      pip install scons-tool-loader scons-tool-clang
+
+or, if your project uses pipenv_:
+
+.. code-block:: shell
+
+      pipenv install --dev scons-tool-loader scons-tool-clang
 
 Alternativelly, you may add this to your ``Pipfile``
 
 .. code-block::
 
     [dev-packages]
+    scons-tool-loader = "*"
     scons-tool-clang = "*"
 
 
 The tool will be installed as a namespaced package ``sconstool.clang``
-in project's virtual environment.
+in project's virtual environment. You may further use scons-tool-loader_
+to load the tool.
 
 As a git submodule
 ^^^^^^^^^^^^^^^^^^
@@ -58,7 +64,7 @@ Usage example
 
 #. Create simple C file
 
-   .. code-block:: cpp
+   .. code-block:: c
 
       // test.c
       int main()
@@ -71,6 +77,9 @@ Usage example
    .. code-block:: python
 
       # SConstruct
+      # TODO: uncomment following lines if the tool is installed via pip/pipenv
+      # import sconstool.loader
+      # sconstool.loader.extend_toolpath(transparent=True)
       env = Environment(tools = ['default', 'clang'])
       print(env.subst("using $CC $CCVERSION"))
       env.Program('test.c')
@@ -106,8 +115,10 @@ SOFTWARE
 
 .. _LLVM: http://clang.llvm.org/
 .. _scons-tool-clang: https://github.com/ptomulik/scons-tool-clang
+.. _scons-tool-loader: https://github.com/ptomulik/scons-tool-loader
 .. _clang: http://llvm.org/
 .. _SCons: http://scons.org
 .. _pipenv: https://pipenv.readthedocs.io/
+.. _pypi: https://pypi.org/
 
 .. <!--- vim: set expandtab tabstop=2 shiftwidth=2 syntax=rst: -->
