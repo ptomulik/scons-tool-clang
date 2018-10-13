@@ -113,10 +113,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE
 
-.. _LLVM: http://clang.llvm.org/
+.. _LLVM: http://llvm.org/
+.. _clang: http://clang.llvm.org/
 .. _scons-tool-clang: https://github.com/ptomulik/scons-tool-clang
 .. _scons-tool-loader: https://github.com/ptomulik/scons-tool-loader
-.. _clang: http://llvm.org/
 .. _SCons: http://scons.org
 .. _pipenv: https://pipenv.readthedocs.io/
 .. _pypi: https://pypi.org/
