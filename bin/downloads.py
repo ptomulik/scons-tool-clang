@@ -47,12 +47,10 @@ def scons_test_version_string(s):
 
 def untar(tar, **kw):
     # Options
-    try:                strip_components = kw['strip_components']
-    except KeyError:    strip_components = 0
-    try:                member_name_filter = kw['member_name_filter']
-    except KeyError:    member_name_filter = lambda x : True
-    try:                path = kw['path']
-    except KeyError:    path = '.'
+    strip_components = kw.get('strip_components', 0)
+    member_name_filter = kw.get('member_name_filter', lambda x: True)
+    path = kw.get('path', '.')
+
     # Download the tar file
     members = [m for m in tar.getmembers() if len(m.name.split('/')) > strip_components]
     if strip_components > 0:
@@ -94,7 +92,7 @@ def download_scons_test(**kw):
 
     if clean:
         info("cleaning scons-test", **kw)
-        for f in ['runtest.py', 'testing']:
+        for f in ['runtest', 'runtest.py', 'testing']:
             ff = os.path.join(destdir,f)
             if os.path.exists(ff):
                 info("removing '%s'" % ff, **kw)
@@ -108,6 +106,7 @@ def download_scons_test(**kw):
     info("downloading '%s' -> '%s'" % (url, destdir))
     member_name_filter = lambda s : re.match('(?:^runtest\.py$|testing/)', s)
     urluntar(url, path = destdir, strip_components = 1, member_name_filter = member_name_filter)
+    shutil.move(os.path.join(destdir, 'runtest.py'), os.path.join(destdir, 'runtest'))
     return 0
 
 # The script...

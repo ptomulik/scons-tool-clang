@@ -16,7 +16,7 @@ Running tests
 
 There are some end-to-end tests. They can be ran this way::
 
-   pipenv run ./runtest.py -e -a
+   pipenv run python runtest -e -a
 
 
 Creating package for distribution

@@ -2,7 +2,7 @@
 """scons-tool-clang
 """
 
-from setuptools import setup
+from setuptools import setup, find_namespace_packages
 from os import path
 
 here = path.abspath(path.dirname(__file__))
@@ -12,7 +12,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
         name='scons-tool-clang',
-        version='0.2.5',
+        version='0.2.6',
         package_dir={'sconstool.clang': '.'},
         packages=['sconstool.clang'],
         namespace_packages=['sconstool'],

@@ -1,5 +1,10 @@
 #!
 
 exclude ./runtest.py
+exclude ./runtest
 prune ./bin
 prune ./testing
+prune ./test
+prune ./build
+prune ./dist
+prune ./scons-tool-*

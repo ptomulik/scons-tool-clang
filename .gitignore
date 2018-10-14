@@ -35,6 +35,7 @@ site_scons/
 
 # Scons testing framework
 /runtest.py
+/runtest
 /testing/
 
 # vim: set syntax=conf tabstop=2 expandtab nospell:
