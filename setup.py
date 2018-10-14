@@ -2,7 +2,7 @@
 """scons-tool-clang
 """
 
-from setuptools import setup, find_namespace_packages
+from setuptools import setup
 from os import path
 
 here = path.abspath(path.dirname(__file__))
