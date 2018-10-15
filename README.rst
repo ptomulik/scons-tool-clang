@@ -11,6 +11,13 @@ scons-tool-clang
 
 SCons_ support for LLVM_ clang_ C compiler.
 
+Important note
+--------------
+
+SCons currently provides ``clang`` tool which replaces this one. See SCons user
+documentation, especially the `tool list`_. This package is left here for
+historical reasons and for some experimental purposes.
+
 Installation
 ------------
 
@@ -120,5 +127,6 @@ SOFTWARE
 .. _SCons: http://scons.org
 .. _pipenv: https://pipenv.readthedocs.io/
 .. _pypi: https://pypi.org/
+.. _tool list: https://scons.org/doc/HTML/scons-user.html#app-tools
 
 .. <!--- vim: set expandtab tabstop=2 shiftwidth=2 syntax=rst: -->
