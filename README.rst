@@ -36,7 +36,7 @@ or, if your project uses pipenv_:
 
       pipenv install --dev scons-tool-loader scons-tool-clang
 
-Alternativelly, you may add this to your ``Pipfile``
+Alternatively, you may add this to your ``Pipfile``
 
 .. code-block::
 
